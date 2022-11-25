@@ -1,0 +1,21 @@
+extends layouts/frontend
+
+include mixins
+
+block content
+    .ui.middle.aligned.center.aligned.grid
+        .six.wide.column
+            h1 Rechercher des passagers
+
+            form.ui.large.form(method="post", action="/result")
+                .ui.stacked.segment
+                    input(type="checkbox", name="Age") 
+                    label(for="Age") Age
+
+                    input(type="checkbox", name="Sex")
+                    label(for="Sex") Sexe
+                    input(type="checkbox", name="Pclass")
+                    label(for="Pclass") Classe
+
+
+                    button(type="submit").ui.fluid.large.teal.submit.button Rechercher

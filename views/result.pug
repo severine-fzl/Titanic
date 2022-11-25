@@ -1,0 +1,51 @@
+extends layouts/frontend
+
+include mixins
+
+block content
+
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+    block scripts
+
+    body
+    div
+        canvas#myChart
+
+    script.
+
+        const ctx = document.getElementById('myChart');
+        
+        new Chart(ctx, {    
+            type: 'bar',
+            data: {
+                labels: ["0-18 ans", "19-30 ans", "31-50 ans", "+ de 50 ans"],
+                datasets: [{ 
+                    data: [#{graphique.Pourcentages[0]}],
+                    label: "Classe 1",
+                    borderColor: "rgb(60,186,159)",
+                    backgroundColor: "rgb(60,186,159,0.1)",
+                    borderWidth:2
+                }, { 
+                    data: [#{graphique.Pourcentages[1]}],
+                    label: "Classe 2",
+                    borderColor: "rgb(255,165,0)",
+                    backgroundColor:"rgb(255,165,0,0.1)",
+                    borderWidth:2
+                }, { 
+                    data: [#{graphique.Pourcentages[2]}],
+                    label: "Classe 3",
+                    borderColor: "rgb(196,88,80)",
+                    backgroundColor:"rgb(196,88,80,0.1)",
+                    borderWidth:2
+                    }
+                ]
+            },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true,
+            max : 100
+            }
+        }
+        }
+        });
