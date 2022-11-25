@@ -17,9 +17,7 @@ export default async function PassengerController(req, res) {
 
     if (Age && Pclass) {
         for(let i = 1; i <= 3; i++) {
-            console.log("Classe" + i)
             for (const elementsAge of arrayAge ) {
-                console.log("Age minimum " + elementsAge[0] + " Age maximum " + elementsAge[1])
 
                 let requete = {
                     "Age" : {$gt: elementsAge[0], $lt : elementsAge[1]},
@@ -37,14 +35,11 @@ export default async function PassengerController(req, res) {
                 graphique.Pourcentages[i-1].push(result)
             }
         }
-        console.log(graphique.Pourcentages)
     }
 
     if (Sex && Pclass) {
         for(let i = 1; i <= 3; i++) {
-            console.log("Classe" + i)
             for (const elementsSex of arraySex ) {
-                console.log("Sex " + elementsSex)
                 let requete = {
                     "Sex" : elementsSex,
                     "Pclass" : i
@@ -58,15 +53,12 @@ export default async function PassengerController(req, res) {
     
                 let resultat2 = await PassengerModel.count(requete1)
                 let result = (resultat1 / resultat2) * 100
-
-                console.log(result)
             }
         }
     }
 
     if (Age && Sex) {
         for (const elementsAge of arrayAge ) {
-            console.log("Age minimum" + elementsAge[0] + " Age maximum" + elementsAge[1])
             for (const elementsSex of arraySex ) {
                 let requete = {
                 "Age" : {$gt: elementsAge[0], $lt : elementsAge[1]},
@@ -81,7 +73,6 @@ export default async function PassengerController(req, res) {
     
             let resultat2 = await PassengerModel.count(requete1)
             let result = (resultat1 / resultat2) * 100
-            console.log(result)
             }
         }
     }
